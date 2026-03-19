@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // メニューのHTMLを自動挿入
+    // メニューと共通要素の挿入
     const menuHTML = `
         <nav id="navOverlay">
             <a href="index.html" class="nav-link" style="transition-delay: 0.1s">Home</a>
@@ -9,36 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="privacy.html" class="nav-link" style="transition-delay: 0.5s">Privacy</a>
             <a href="personal-data.html" class="nav-link" style="transition-delay: 0.6s">Data Policy</a>
         </nav>
-        <div class="lang-switch" style="position:fixed; bottom:30px; right:30px; z-index:1000;">
-            <button class="menu-btn" onclick="setLang('ja')">JP</button>
-            <button class="menu-btn" onclick="setLang('en')">EN</button>
+        <div style="position:fixed; bottom:30px; right:30px; z-index:1000; display:flex; gap:10px;">
+            <button class="menu-btn" style="padding: 8px 15px;" onclick="setLang('ja')">JP</button>
+            <button class="menu-btn" style="padding: 8px 15px;" onclick="setLang('en')">EN</button>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', menuHTML);
 
-    // スクロール時のカードふわっと表示（追加アニメーション用）
+    // スクロールアニメーション（ふわっと表示）
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
-            }
+            if (entry.isIntersecting) entry.target.classList.add('show');
         });
-    });
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.glass-card').forEach(card => {
-        card.style.animationPlayState = 'paused';
-        observer.observe(card);
-    });
+    document.querySelectorAll('.glass-card').forEach(card => observer.observe(card));
 });
 
 function toggleNav() {
     const nav = document.getElementById('navOverlay');
-    const btn = document.querySelector('.menu-btn');
+    const btn = document.querySelector('header .menu-btn');
     const isActive = nav.classList.toggle('active');
     btn.innerText = isActive ? 'CLOSE' : 'MENU';
     document.body.style.overflow = isActive ? 'hidden' : '';
 }
 
 function setLang(lang) {
-    alert('Language: ' + lang.toUpperCase());
+    alert('Language switched: ' + lang.toUpperCase());
 }
