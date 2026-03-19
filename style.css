@@ -1,42 +1,25 @@
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.07);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.2);
   --blur-val: 20px;
   --accent: #00f2fe;
   --text-main: #ffffff;
-  --text-sub: rgba(255, 255, 255, 0.6);
+  --text-sub: rgba(255, 255, 255, 0.7);
+  --bg-dark: #0f172a;
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
   background: radial-gradient(circle at top right, #1e293b, #0f172a);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+  line-height: 1.8;
   overflow-x: hidden;
 }
 
-/* Glassmorphism Card */
-.glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--blur-val));
-  -webkit-backdrop-filter: blur(var(--blur-val));
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  padding: 2.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s forwards ease-out;
-}
-
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Header & Menu Trigger */
+/* ヘッダーの視認性強化 */
 header {
   position: fixed;
   top: 0;
@@ -46,43 +29,50 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 2000;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0) 100%);
 }
 
 .logo {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .menu-btn {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   color: white;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 10px 25px;
+  border-radius: 50px;
   cursor: pointer;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.menu-btn:hover { background: white; color: #000; }
+.menu-btn:hover {
+  background: white;
+  color: var(--bg-dark);
+  transform: scale(1.05);
+}
 
-/* Full Screen Menu */
+/* フルスクリーンメニュー */
 #navOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.98);
-  backdrop-filter: blur(25px);
+  background: rgba(10, 15, 28, 0.98);
+  backdrop-filter: blur(30px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1500;
 }
 
@@ -91,31 +81,57 @@ header {
 .nav-link {
   color: white;
   text-decoration: none;
-  font-size: 2.2rem;
-  font-weight: 200;
+  font-size: clamp(1.5rem, 8vw, 2.8rem);
+  font-weight: 700;
   margin: 0.8rem 0;
   transition: 0.4s;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(20px);
 }
 
-#navOverlay.active .nav-link {
-  opacity: 1;
-  transform: translateY(0);
+#navOverlay.active .nav-link { opacity: 1; transform: translateY(0); }
+.nav-link:hover { color: var(--accent); transform: scale(1.1); }
+
+/* コンテンツカード */
+.container { max-width: 900px; margin: 160px auto 100px; padding: 0 5%; }
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-val));
+  -webkit-backdrop-filter: blur(var(--blur-val));
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s ease-out;
 }
 
-.nav-link:hover { color: var(--accent); letter-spacing: 0.1em; }
+.glass-card.show { opacity: 1; transform: translateY(0); }
 
-/* Common Components */
-.container { max-width: 900px; margin: 140px auto 100px; padding: 0 5%; }
-h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; }
-.btn-primary {
+h1 { font-size: 3rem; margin-bottom: 1.5rem; font-weight: 800; }
+.accent-text { color: var(--accent); font-weight: 600; }
+
+.btn-main {
   display: inline-block;
   padding: 1rem 2.5rem;
   background: white;
-  color: #0f172a;
+  color: var(--bg-dark);
   text-decoration: none;
   border-radius: 50px;
-  font-weight: 700;
+  font-weight: 800;
   transition: 0.3s;
+  margin-top: 1rem;
+}
+
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3); }
+
+/* 広告枠（404用） */
+.ad-space {
+  border: 1px dashed var(--glass-border);
+  background: rgba(0,0,0,0.2);
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 15px;
 }
