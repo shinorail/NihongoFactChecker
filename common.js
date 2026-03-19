@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 全ページ共通メニュー & ダウンロードポップアップの挿入
+    // 1. 全ページ共通メニュー & ダウンロードポップアップのベース挿入
     const commonHTML = `
         <nav id="navOverlay">
             <a href="index.html" class="nav-link" style="transition-delay: 0.1s">Home</a>
@@ -17,23 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div id="downloadModal" style="position:fixed; inset:0; background:rgba(10, 15, 28, 0.9); backdrop-filter:blur(15px); display:none; justify-content:center; align-items:center; z-index:3000;">
             <div class="glass-card" style="max-width:550px; width:90%; text-align:center; opacity:1; transform:none; border: 1px solid var(--accent);">
-                <h2 style="color:var(--accent); margin-bottom:1.5rem;">ダウンロード・実行手順</h2>
-                <div style="text-align:left; margin-bottom:2rem; font-size:0.95rem; line-height:1.8; color:rgba(255,255,255,0.9);">
-                    <p>① 下のボタンから <b>NihongoFactChecker.exe</b> を保存してください。</p>
-                    <p>② 実行時に「WindowsによってPCが保護されました」と表示される場合があります。</p>
-                    <p>③ その際は、画面内の<b>「詳細情報」</b>をクリックし、現れた<b>「実行」</b>ボタンを押してください。</p>
-                    <p style="margin-top:1rem; font-size:0.8rem; opacity:0.7;">※個人開発アプリのため、Windowsの警告が出ることがありますが、安全性に問題はありません。</p>
-                </div>
-                <div style="display:flex; gap:15px; justify-content:center;">
-                    <button class="btn-main" onclick="executeDownload()" style="margin:0; min-width:180px;">ダウンロード開始</button>
-                    <button class="menu-btn" onclick="closeModal()">キャンセル</button>
-                </div>
+                <div id="modalContentInner">
+                    </div>
             </div>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', commonHTML);
 
-    // 2. スクロールアニメーション（Intersection Observer）
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('show');
@@ -45,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* --- 関数定義 --- */
 
-// メニューの開閉
 function toggleNav() {
     const nav = document.getElementById('navOverlay');
     const btn = document.querySelector('header .menu-btn');
@@ -54,25 +43,60 @@ function toggleNav() {
     document.body.style.overflow = isActive ? 'hidden' : '';
 }
 
-// 言語切替（アラートのみ）
 function setLang(lang) {
     alert('Language switched: ' + lang.toUpperCase());
 }
 
-// ダウンロードポップアップを開く
+// ダウンロードポップアップを開く（デバイス判定）
 function openDownloadModal(event) {
     if (event) event.preventDefault();
-    document.getElementById('downloadModal').style.display = 'flex';
+    
+    const modal = document.getElementById('downloadModal');
+    const inner = document.getElementById('modalContentInner');
+    
+    // スマホ・タブレット判定
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        inner.innerHTML = `
+            <h2 style="color:var(--accent); margin-bottom:1.5rem;">PC専用アプリです</h2>
+            <p style="text-align:center; margin-bottom:1.5rem; line-height:1.8;">
+                <b>Nihongo Fact Checker</b> は現在 Windows PC 専用です。<br>
+                スマホ版・ウェブ版は現在 <span class="accent-text">準備中</span> です。
+            </p>
+            <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:10px; margin-bottom:1.5rem; font-size:0.9rem;">
+                📱 スマホ版：開発中<br>
+                🌐 ウェブ版：開発中
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <a href="roadmap.html" class="btn-main" style="margin:0;">ロードマップを確認する</a>
+                <button class="menu-btn" onclick="closeModal()">閉じる</button>
+            </div>
+        `;
+    } else {
+        inner.innerHTML = `
+            <h2 style="color:var(--accent); margin-bottom:1.5rem;">ダウンロード・実行手順</h2>
+            <div style="text-align:left; margin-bottom:2rem; font-size:0.95rem; line-height:1.8; color:rgba(255,255,255,0.9);">
+                <p>① 下のボタンから <b>NihongoFactChecker.exe</b> を保存してください。</p>
+                <p>② 実行時に「WindowsによってPCが保護されました」と出た場合は、<b>「詳細情報」</b>をクリックし、現れた<b>「実行」</b>ボタンを押してください。</p>
+                <p style="margin-top:1rem; font-size:0.8rem; opacity:0.7;">※ウェブ版・スマホ版も順次リリース予定です。</p>
+            </div>
+            <div style="display:flex; gap:15px; justify-content:center;">
+                <button class="btn-main" onclick="executeDownload()" style="margin:0; min-width:180px;">ダウンロード開始</button>
+                <button class="menu-btn" onclick="closeModal()">キャンセル</button>
+            </div>
+        `;
+    }
+
+    modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
-// ダウンロードポップアップを閉じる
 function closeModal() {
     document.getElementById('downloadModal').style.display = 'none';
     document.body.style.overflow = '';
 }
 
-// 実際のダウンロード処理実行
 function executeDownload() {
     const filePath = 'dist/NihongoFactChecker.exe';
     const link = document.createElement('a');
@@ -81,7 +105,5 @@ function executeDownload() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
-    // ダウンロード開始後にポップアップを閉じる
     setTimeout(closeModal, 500);
 }
