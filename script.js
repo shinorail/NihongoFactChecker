@@ -5,7 +5,7 @@ const menuItems = [
   { ja: "利用規約", en: "Terms", link: "terms.html" },
   { ja: "プライバシー", en: "Privacy", link: "privacy.html" },
   { ja: "個人情報保護方針", en: "Personal Data", link: "personal-data.html" },
-  { ja: "会社情報", en: "Company", link: "company.html" }
+  { ja: "制作ブランド", en: "Brand", link: "company.html" }
 ];
 
 const navMenu = document.getElementById("nav-menu");
@@ -19,10 +19,12 @@ menuItems.forEach(item => {
   navMenu.appendChild(a);
 });
 
-// ハンバーガーメニュー
+// フルスクリーンメニューの開閉
 const hamburger = document.getElementById("hamburger");
+const overlay = document.getElementById("menu-overlay");
+
 hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("show");
+  overlay.classList.toggle("open");
 });
 
 // 言語切替
