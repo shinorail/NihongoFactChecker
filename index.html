@@ -20,35 +20,38 @@
             <p class="accent-text" style="font-size: 1.3rem; margin-bottom: 2rem;">日本語文章の事実チェックを、もっと簡単に。</p>
             <p style="text-align: left; padding: 1rem; border-left: 2px solid var(--accent); background: rgba(0,0,0,0.15); border-radius: 0 15px 15px 0;">
                 Nihongo Fact Checker は、日本語の文章を AI が解析し、事実性をチェックするアプリです。
-                文章を入力するだけで正確さを確認でき、レポートや自由研究、SNS 投稿の推敲に最適です。
+                レポート、自由研究、SNS 投稿の推敲など、情報の正確さが求められる場面で活躍します。
             </p>
         </section>
 
         <section class="glass-card">
             <h2>特徴</h2>
             <ul style="list-style: none; margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <li style="padding: 10px; background: rgba(255,255,255,0.05); border-radius: 10px;">🛡️ AI による事実チェック</li>
-                <li style="padding: 10px; background: rgba(255,255,255,0.05); border-radius: 10px;">✨ シンプルなデザイン</li>
-                <li style="padding: 10px; background: rgba(255,255,255,0.05); border-radius: 10px;">🌐 オフライン動作対応</li>
-                <li style="padding: 10px; background: rgba(255,255,255,0.05); border-radius: 10px;">🎓 中学生でも使える UI</li>
+                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">🔍 高精度な事実確認</li>
+                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">⚡ 爆速ローカル処理</li>
+                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">🛡️ プライバシー重視設計</li>
+                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">🎨 直感的な UI デザイン</li>
             </ul>
         </section>
 
-        <section class="glass-card" style="text-align: center;">
+        <section class="glass-card" style="text-align: center; border: 2px solid var(--accent);">
             <h2>ダウンロード</h2>
-            <p style="margin: 1rem 0; color: var(--text-sub);">Windows 版 (v1.0) を無料でダウンロードできます。</p>
-            <a href="dist/NihongoFactChecker.exe" class="btn-main" onclick="startDownload(event)">
+            <p style="margin: 1rem 0; color: var(--text-sub);">Windows 版 (v1.0) を無料で配布中。</p>
+            
+            <button class="btn-main" onclick="openDownloadModal(event)">
                 Download .exe Free
-            </a>
+            </button>
+            
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">対応 OS: Windows 10 / 11 (64bit)</p>
         </section>
 
-        <section class="glass-card">
-            <h2>Nagano AI Works について</h2>
+        <section class="glass-card" style="background: rgba(255,255,255,0.03);">
+            <h2>Nagano AI Works</h2>
             <p style="margin-top: 1rem;">
-                長野県在住の個人クリエイターによる AI ソフトウェア開発ブランド。
-                「シンプルで強い AI ツールを、誰にでも」を理念に、一人ですべての開発を行っています。
+                長野県から発信する個人開発ブランド。「シンプルで強い AI ツール」をコンセプトに、
+                あなたの知的な活動をテクノロジーでサポートします。
             </p>
-            <a href="company.html" style="color: var(--accent); text-decoration: none; display: inline-block; margin-top: 1.5rem; font-weight: bold;">詳しく見る →</a>
+            <a href="company.html" style="color: var(--accent); text-decoration: none; display: inline-block; margin-top: 1.5rem; font-weight: bold;">ブランド詳細を見る →</a>
         </section>
     </main>
 
