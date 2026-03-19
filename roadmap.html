@@ -1,23 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8"><title>Roadmap</title><link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap | Nagano AI Works</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ロードマップ専用のレスポンシブ微調整 */
+        .roadmap-list {
+            margin-top: 2rem;
+            list-style: none;
+        }
+
+        .roadmap-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--glass-border);
+        }
+
+        .roadmap-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-content {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem !important;
+            }
+            .roadmap-item h3 {
+                font-size: 1.3rem;
+            }
+            .roadmap-content {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header><div class="logo">Nagano AI Works</div><button class="menu-btn" onclick="toggleNav()">Menu</button></header>
+    <header>
+        <div class="logo">Nagano AI Works</div>
+        <button class="menu-btn" onclick="toggleNav()">Menu</button>
+    </header>
+
     <main class="container">
         <section class="glass-card">
             <h1>開発ロードマップ</h1>
-            <div style="margin-top: 2rem;">
-                <h3 class="accent-text">2026 年</h3>
-                <p>・v1.0：Windows 版リリース / v1.1：UI 改善 / v1.2：Web 版（β）公開</p>
-                <h3 class="accent-text" style="margin-top: 1.5rem;">2027 年</h3>
-                <p>・v2.0：AI モデル強化 / v2.5：スマホ版開発開始</p>
-                <h3 class="accent-text" style="margin-top: 1.5rem;">2028 年</h3>
-                <p>・v3.0：スマホ版正式リリース</p>
+            
+            <div class="roadmap-list">
+                <div class="roadmap-item">
+                    <h3 class="accent-text">2026 年</h3>
+                    <div class="roadmap-content">
+                        ・v1.0：Windows 版リリース<br>
+                        ・v1.1：UI デザインの大幅改善<br>
+                        ・v1.2：Web 版（β）一般公開
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <h3 class="accent-text">2027 年</h3>
+                    <div class="roadmap-content">
+                        ・v2.0：次世代 AI モデル搭載<br>
+                        ・v2.5：スマホ版（iOS/Android）開発開始
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <h3 class="accent-text">2028 年</h3>
+                    <div class="roadmap-content">
+                        ・v3.0：スマホ版 正式リリース
+                    </div>
+                </div>
             </div>
         </section>
+
+        <section class="glass-card" style="background: rgba(0, 242, 254, 0.05);">
+            <h2>Future</h2>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                ウェブ版およびスマホ版のリリースにより、場所を選ばずどこでも日本語の事実チェックが可能になります。最新情報は順次このページで公開します。
+            </p>
+        </section>
     </main>
+
     <script src="common.js"></script>
 </body>
 </html>
