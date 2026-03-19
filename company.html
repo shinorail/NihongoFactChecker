@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand | Nagano AI Works</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Nagano AI Works</div>
+        <button class="menu-btn" onclick="toggleNav()">Menu</button>
+    </header>
+
+    <main class="container">
+        <section class="glass-card">
+            <h1 style="background: linear-gradient(135deg, #fff 40%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                制作ブランド紹介
+            </h1>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                Nagano AI Works は、長野県在住の個人クリエイターによる AI ソフトウェア開発ブランドです。
+                アプリ開発、AI ツール制作、研究のすべてを一人で行っています。
+            </p>
+        </section>
+
+        <section class="glass-card" style="border-left: 4px solid var(--accent);">
+            <h2 style="font-size: 0.9rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;">Concept</h2>
+            <p style="font-size: clamp(1.2rem, 5vw, 1.8rem); font-weight: 200; line-height: 1.4;">
+                「シンプルで強い AI ツールを、誰にでも」
+            </p>
+        </section>
+
+        <section class="glass-card">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--text-sub); margin-bottom: 0.5rem;">所在地</h3>
+                    <p>長野県（詳細は非公開）</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--text-sub); margin-bottom: 0.5rem;">活動内容</h3>
+                    <p>AI アプリケーション開発<br>自然言語処理の研究<br>UI/UX デザイン</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card" style="text-align: center; background: rgba(255,255,255,0.03);">
+            <p style="font-style: italic; opacity: 0.8;">
+                "テクノロジーを、もっと身近で、もっと使いやすく。"
+            </p>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+</body>
+</html>
