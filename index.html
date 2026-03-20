@@ -3,41 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHINORAIL Utility</title>
+    <title>SHINORAIL | Official PR & Support</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<main class="grid-container">
-    <div class="feature-card" id="js-geo">
-        <div class="card-inner">
-            <span class="label">LOCATION</span>
-            <div class="display-value" id="js-location-name">取得中...</div>
-            <div class="sub-value" id="js-latlng">--.---- / --.----</div>
-        </div>
-    </div>
+<header>
+    <div class="logo">Nagano AI Works</div>
+    <button class="menu-trigger" id="js-menu-open"><span></span><span></span></button>
+</header>
 
-    <div class="feature-card" id="js-traffic">
-        <div class="card-inner">
-            <span class="label">TRAFFIC</span>
-            <div class="traffic-list">
-                <div class="item"><span>信越本線</span><span class="status ok">平常</span></div>
-                <div class="item"><span>篠ノ井線</span><span class="status ok">平常</span></div>
-                <div class="item"><span>北陸新幹線</span><span class="status ok">平常</span></div>
+<div class="menu-overlay" id="js-menu-overlay">
+    <button class="close-btn" id="js-menu-close">CLOSE</button>
+    <nav class="huge-nav">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#sponsor">Sponsor</a>
+        <a href="#feedback">Feedback</a>
+        <a href="legal.html">Legal</a>
+    </nav>
+</div>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>SHINORAIL</h1>
+            <p class="tagline">Windows専用・次世代鉄道ユーティリティ</p>
+            <a href="https://github.com/shinorail/NihongoFactChecker/releases" class="btn-main">Get SHINORAIL for Windows</a>
+        </div>
+    </section>
+
+    <section class="section-wrap" id="features">
+        <h2 class="label-title">CORE FEATURES</h2>
+        <div class="grid-container">
+            <div class="feature-card"><h3>📍 位置情報</h3><p>現在地を特定し住所を表示。移動中もリアルタイムに更新されます。</p></div>
+            <div class="feature-card"><h3>🚆 運行情報</h3><p>設定した路線の状況をデスクトップで監視。遅延を逃しません。</p></div>
+            <div class="feature-card"><h3>📅 記念日</h3><p>「今日は何の日」を表示。毎日の起動に楽しみをプラスします。</p></div>
+        </div>
+    </section>
+
+    <section class="section-wrap" id="sponsor">
+        <h2 class="label-title">SPONSORSHIP & AD</h2>
+        <div class="grid-container">
+            <div class="card sponsor-card">
+                <span class="badge">技術スポンサー募集</span>
+                <p>API提供やインフラ支援など、SHINORAILの技術基盤を支えてくださる企業・個人を募集しています。</p>
+                <a href="mailto:your-email@example.com" class="contact-link">お問い合わせ →</a>
+            </div>
+            <div class="card ad-card">
+                <span class="badge">ADVERTISEMENT</span>
+                <div class="ad-placeholder">Your Ad Here</div>
+                <p>月間アクティブユーザー向けの広告掲載が可能です。</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="feature-card" id="js-day">
-        <div class="card-inner">
-            <span class="label">TODAY IS...</span>
-            <div class="display-value small" id="js-anniversary">
-                カセットテープの日<br>上野動物園開園記念日
+    <section class="section-wrap" id="feedback">
+        <h2 class="label-title">DEVELOPMENT</h2>
+        <div class="card wide-card">
+            <h3>開発へのご意見・技術協力</h3>
+            <p>SHINORAILは常に進化しています。「こんな機能が欲しい」「コードの改善提案」など、開発者宮嵜へのフィードバックをお待ちしております。</p>
+            <div class="btn-group">
+                <a href="https://github.com/shinorail/NihongoFactChecker/issues" class="btn-sub">Issueを送る</a>
+                <a href="#" class="btn-sub">フォームから送信</a>
             </div>
         </div>
-    </div>
+    </section>
+</main>
 
-    </main>
+<footer>
+    <p>&copy; 2026 Nagano AI Works | Miyazaki</p>
+</footer>
 
 <script src="script.js"></script>
 </body>
