@@ -1,41 +1,30 @@
-// 自動メニュー生成
-const menuItems = [
-  { ja: "ホーム", en: "Home", link: "index.html" },
-  { ja: "ロードマップ", en: "Roadmap", link: "roadmap.html" },
-  { ja: "利用規約", en: "Terms", link: "terms.html" },
-  { ja: "プライバシー", en: "Privacy", link: "privacy.html" },
-  { ja: "個人情報保護方針", en: "Personal Data", link: "personal-data.html" },
-  { ja: "制作ブランド", en: "Brand", link: "company.html" }
-];
+document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.getElementById('js-menu-trigger');
+    const body = document.body;
 
-const navMenu = document.getElementById("nav-menu");
+    // Menu Toggle
+    trigger.addEventListener('click', () => {
+        body.classList.toggle('menu-open');
+    });
 
-menuItems.forEach(item => {
-  const a = document.createElement("a");
-  a.href = item.link;
-  a.textContent = item.ja;
-  a.setAttribute("data-lang-ja", item.ja);
-  a.setAttribute("data-lang-en", item.en);
-  navMenu.appendChild(a);
+    // Scroll Reveal Animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            body.classList.remove('menu-open');
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
 });
-
-// フルスクリーンメニューの開閉
-const hamburger = document.getElementById("hamburger");
-const overlay = document.getElementById("menu-overlay");
-
-hamburger.addEventListener("click", () => {
-  overlay.classList.toggle("open");
-});
-
-// 言語切替
-const jaBtn = document.getElementById("lang-ja");
-const enBtn = document.getElementById("lang-en");
-
-function switchLang(lang) {
-  document.querySelectorAll("[data-lang-ja]").forEach(el => {
-    el.textContent = el.getAttribute(`data-lang-${lang}`);
-  });
-}
-
-jaBtn.onclick = () => switchLang("ja");
-enBtn.onclick = () => switchLang("en");
