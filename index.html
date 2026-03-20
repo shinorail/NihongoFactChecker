@@ -8,55 +8,53 @@
 </head>
 <body>
     <header>
-        <a href="#" class="logo">Nagano AI Works</a>
-        <button class="menu-trigger" id="js-menu-trigger">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="brand-name">Nagano AI Works</div>
+        <button class="menu-btn" onclick="document.body.classList.toggle('open')">MENU</button>
     </header>
 
-    <div class="menu-overlay">
-        <nav class="menu-nav">
-            <a href="#home" style="transition-delay: 0.1s;">Home</a>
-            <a href="#roadmap" style="transition-delay: 0.2s;">Roadmap</a>
-            <a href="#brand" style="transition-delay: 0.3s;">Brand</a>
-            <a href="legal.html" style="transition-delay: 0.4s;">Terms & AI</a>
-        </nav>
+    <div class="overlay">
+        <a href="#home" onclick="document.body.classList.remove('open')">Home</a>
+        <a href="#roadmap" onclick="document.body.classList.remove('open')">Roadmap</a>
+        <a href="#brand" onclick="document.body.classList.remove('open')">Brand</a>
+        <a href="legal.html">Terms & AI</a>
+        <button class="menu-btn" style="margin-top:40px;" onclick="document.body.classList.remove('open')">CLOSE</button>
     </div>
 
     <main id="home">
         <section>
-            <h1 class="reveal" style="font-size: 5rem;">Nihongo<br>Fact Checker</h1>
-            <p class="reveal" style="color: var(--gray-text); font-size: 1.5rem; margin-top: 20px;">
-                v3.5.0 Released. <br>Python不要。長野から届ける、最高精度の校正体験。
-            </p>
-            <div class="reveal" style="margin-top: 40px;">
-                <a href="https://github.com/shinorail/NihongoFactChecker/releases" 
-                   style="color: var(--accent-color); font-weight: 900; text-decoration: none; font-size: 1.2rem;">
-                   Download EXE →
-                </a>
+            <h1>Nihongo<br>Fact Checker</h1>
+            <p class="lead">Pythonの環境構築は、もう不要。<br>EXEをダウンロードして実行する。ただそれだけで、プロの日本語校正が手に入ります。</p>
+            <div>
+                <a href="https://github.com/shinorail/NihongoFactChecker/releases" class="btn-dl">Download v3.5.0 (EXE)</a>
             </div>
         </section>
 
         <section id="roadmap">
-            <h2 class="reveal">Roadmap</h2>
-            <div class="content-box reveal" style="margin-top: 30px;">
-                <p>2026.03 - v3.5.0: アルゴリズム大幅改善 & UI刷新</p>
-                <p>2026.Q2 - v4.0.0: AIリアルタイム推敲機能 搭載予定</p>
+            <h2>Roadmap</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>v3.5.0 (Now)</h3>
+                    <p>解析スピードの劇的向上と、実行ファイルの軽量化を実現。最も安定したバージョンです。</p>
+                </div>
+                <div class="card">
+                    <h3>v4.0.0 (Next)</h3>
+                    <p>AIによる文脈推論を強化。より自然な日本語への「書き換え提案」機能を開発中です。</p>
+                </div>
             </div>
         </section>
 
         <section id="brand">
-            <h2 class="reveal">Brand</h2>
-            <p class="reveal" style="margin-top: 20px;">
-                「Nagano AI Works」は、長野市を拠点とする宮嵜による個人プロジェクトです。<br>
-                技術を、もっと身近に。もっとシンプルに。
-            </p>
+            <h2>Brand</h2>
+            <p class="lead">Nagano AI Worksは、長野市から「複雑な技術を、誰もが使える道具に変える」ことを目指しています。</p>
+            <div class="card">
+                <h3>Creator: Miyazaki</h3>
+                <p>Web技術とAIを融合させ、日常の「面倒」を解決するプロダクトを開発しています。本ツールもその一つです。</p>
+            </div>
         </section>
     </main>
 
-    <footer class="footer-mini">
-        &copy; 2026 Nagano AI Works / Miyazaki.
+    <footer>
+        &copy; 2026 Nagano AI Works / Created by Miyazaki.
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>
