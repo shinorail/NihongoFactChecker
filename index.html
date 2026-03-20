@@ -3,98 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHINORAIL v3.5.0 Official</title>
+    <title>SHINORAIL Utility</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-mode">
+<body>
 
-<header>
-    <div class="brand">Nagano AI Works</div>
-    <button class="menu-trigger" id="js-menu-open">MENU</button>
-</header>
-
-<div class="full-menu" id="js-full-menu">
-    <button class="close-btn" id="js-menu-close">CLOSE</button>
-    <nav>
-        <a href="#home" class="menu-item">Home</a>
-        <a href="#roadmap" class="menu-item">Roadmap</a>
-        <a href="#brand" class="menu-item">Brand</a>
-        <a href="legal.html" class="menu-item">Terms</a>
-        <a href="legal.html" class="menu-item">Privacy</a>
-        <a href="legal.html" class="menu-item">Data Policy</a>
-    </nav>
-</div>
-
-<div class="app-layout">
-    <aside class="sidebar">
-        <div class="app-logo">SHINORAIL</div>
-        <div class="app-status" id="js-update-status">● ONLINE / LATEST</div>
-        
-        <div class="nav-group">
-            <button class="nav-link active">回 情報同期 (SYNC)</button>
-            <button class="nav-link" id="js-settings-trigger">⚙ 地域・路線設定</button>
-            <a href="legal.html" class="nav-link">⚖ 利用規約・権利</a>
-            <a href="https://github.com/shinorail/NihongoFactChecker" class="nav-link">🌐 公式サイト</a>
-            <button class="nav-link">✕ 終了</button>
+<main class="grid-container">
+    <div class="feature-card" id="js-geo">
+        <div class="card-inner">
+            <span class="label">LOCATION</span>
+            <div class="display-value" id="js-location-name">取得中...</div>
+            <div class="sub-value" id="js-latlng">--.---- / --.----</div>
         </div>
-    </aside>
+    </div>
 
-    <main class="content">
-        <div class="console">
-            <div id="js-console-log">
-                [11:32:00] Initializing system...<br>
-                [11:32:01] Fetching updates from GitHub...<br>
-            </div>
-        </div>
-
-        <section class="info-panel">
-            <h2 class="panel-title">🚆 【運行状況：近畿エリア】</h2>
-            <div class="scroll-area">
-                <ul class="status-list" id="js-train-status">
-                    <li>大阪環状線： <span class="ok">☑ 平常運転</span></li>
-                    <li>琵琶湖線： <span class="ok">☑ 平常運転</span></li>
-                    <li>京都線： <span class="ok">☑ 平常運転</span></li>
-                    <li>神戸線： <span class="ok">☑ 平常運転</span></li>
-                    </ul>
-            </div>
-        </section>
-
-        <section class="info-panel">
-            <h2 class="panel-title">🆕 アップデート情報</h2>
-            <div id="js-update-info" class="update-content">
-                Loading latest info...
-            </div>
-        </section>
-    </main>
-</div>
-
-<div class="modal" id="js-settings-modal">
-    <div class="modal-content">
-        <h2 class="modal-title">⚙ エリア・路線設定</h2>
-        <div class="settings-grid">
-            <div class="settings-left">
-                <label>1. 対象エリアを選択</label>
-                <select class="custom-select"><option>近畿</option></select>
-
-                <label style="margin-top:20px; display:block;">2. 対象路線を選択 (複数可)</label>
-                <div class="checkbox-list">
-                    <label><input type="checkbox" checked> 大阪環状線</label>
-                    <label><input type="checkbox" checked> 琵琶湖線</label>
-                    <label><input type="checkbox" checked> 京都線</label>
-                    <label><input type="checkbox" checked> 神戸線</label>
-                </div>
-            </div>
-            <div class="settings-right">
-                <label>3. 画面モード</label>
-                <div class="mode-switch">
-                    <label><input type="radio" name="mode" checked> 🌙 ダークモード</label>
-                    <label><input type="radio" name="mode"> ☀️ ライトモード</label>
-                </div>
-                <button class="save-btn" id="js-settings-close">✅ 保存して適用</button>
+    <div class="feature-card" id="js-traffic">
+        <div class="card-inner">
+            <span class="label">TRAFFIC</span>
+            <div class="traffic-list">
+                <div class="item"><span>信越本線</span><span class="status ok">平常</span></div>
+                <div class="item"><span>篠ノ井線</span><span class="status ok">平常</span></div>
+                <div class="item"><span>北陸新幹線</span><span class="status ok">平常</span></div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="feature-card" id="js-day">
+        <div class="card-inner">
+            <span class="label">TODAY IS...</span>
+            <div class="display-value small" id="js-anniversary">
+                カセットテープの日<br>上野動物園開園記念日
+            </div>
+        </div>
+    </div>
+
+    </main>
 
 <script src="script.js"></script>
 </body>
