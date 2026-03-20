@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHINORAIL | Official PR & Support</title>
+    <title>SHINORAIL | Nagano AI Works</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
     <div class="logo">Nagano AI Works</div>
-    <button class="menu-trigger" id="js-menu-open"><span></span><span></span></button>
+    <button class="menu-trigger" id="js-menu-open">
+        <span></span>
+        <span></span>
+    </button>
 </header>
 
 <div class="menu-overlay" id="js-menu-overlay">
@@ -19,26 +22,46 @@
         <a href="#home">Home</a>
         <a href="#features">Features</a>
         <a href="#sponsor">Sponsor</a>
-        <a href="#feedback">Feedback</a>
-        <a href="legal.html">Legal</a>
+        <a href="#contact">Contact</a>
     </nav>
 </div>
 
 <main>
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>SHINORAIL</h1>
+            <h1 class="glitch">SHINORAIL</h1>
             <p class="tagline">Windows専用・次世代鉄道ユーティリティ</p>
-            <a href="https://github.com/shinorail/NihongoFactChecker/releases" class="btn-main">Get SHINORAIL for Windows</a>
+            <div class="hero-btns">
+                <a href="https://github.com/shinorail/NihongoFactChecker/releases" class="btn-main">最新版をダウンロード</a>
+                <p class="version-info">Platform: Windows Only / v3.5.0</p>
+            </div>
         </div>
     </section>
 
     <section class="section-wrap" id="features">
-        <h2 class="label-title">CORE FEATURES</h2>
+        <h2 class="label-title">CORE FUNCTIONS</h2>
         <div class="grid-container">
-            <div class="feature-card"><h3>📍 位置情報</h3><p>現在地を特定し住所を表示。移動中もリアルタイムに更新されます。</p></div>
-            <div class="feature-card"><h3>🚆 運行情報</h3><p>設定した路線の状況をデスクトップで監視。遅延を逃しません。</p></div>
-            <div class="feature-card"><h3>📅 記念日</h3><p>「今日は何の日」を表示。毎日の起動に楽しみをプラスします。</p></div>
+            <div class="feature-card" id="card-geo">
+                <span class="f-icon">📍</span>
+                <h3>現在地特定</h3>
+                <div id="js-location-name" class="display-val">取得中...</div>
+                <div id="js-latlng" class="sub-val">--.---- / --.----</div>
+            </div>
+
+            <div class="feature-card" id="card-traffic">
+                <span class="f-icon">🚆</span>
+                <h3>運行情報</h3>
+                <div class="traffic-list">
+                    <div class="item"><span>信越本線</span><span class="status ok">平常</span></div>
+                    <div class="item"><span>篠ノ井線</span><span class="status ok">平常</span></div>
+                </div>
+            </div>
+
+            <div class="feature-card" id="card-day">
+                <span class="f-icon">📅</span>
+                <h3>今日は何の日</h3>
+                <div id="js-anniversary" class="display-val small">読み込み中...</div>
+            </div>
         </div>
     </section>
 
@@ -47,32 +70,56 @@
         <div class="grid-container">
             <div class="card sponsor-card">
                 <span class="badge">技術スポンサー募集</span>
-                <p>API提供やインフラ支援など、SHINORAILの技術基盤を支えてくださる企業・個人を募集しています。</p>
-                <a href="mailto:your-email@example.com" class="contact-link">お問い合わせ →</a>
+                <p>API提供やインフラ支援など、プロジェクトを支えてくださるパートナーを募集しています。</p>
+                <a href="#contact" class="contact-link">詳細を問い合わせる →</a>
             </div>
             <div class="card ad-card">
                 <span class="badge">ADVERTISEMENT</span>
                 <div class="ad-placeholder">Your Ad Here</div>
-                <p>月間アクティブユーザー向けの広告掲載が可能です。</p>
+                <p>SHINORAILユーザー向けの広告掲載枠です。</p>
             </div>
         </div>
     </section>
 
-    <section class="section-wrap" id="feedback">
-        <h2 class="label-title">DEVELOPMENT</h2>
-        <div class="card wide-card">
-            <h3>開発へのご意見・技術協力</h3>
-            <p>SHINORAILは常に進化しています。「こんな機能が欲しい」「コードの改善提案」など、開発者宮嵜へのフィードバックをお待ちしております。</p>
-            <div class="btn-group">
-                <a href="https://github.com/shinorail/NihongoFactChecker/issues" class="btn-sub">Issueを送る</a>
-                <a href="#" class="btn-sub">フォームから送信</a>
-            </div>
+    <section class="section-wrap" id="contact">
+        <h2 class="label-title">CONTACT & FEEDBACK</h2>
+        <div class="card form-card">
+            <form id="js-contact-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>お名前 / 組織名</label>
+                        <input type="text" name="name" placeholder="Name / Org" required>
+                    </div>
+                    <div class="form-group">
+                        <label>メールアドレス</label>
+                        <input type="email" name="email" placeholder="mzkt.tech@..." required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>お問い合わせ種別</label>
+                        <select name="type" class="custom-select">
+                            <option value="feedback">開発へのご意見・要望</option>
+                            <option value="sponsor">技術スポンサー・広告掲載</option>
+                            <option value="bug">バグ報告</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>メッセージ</label>
+                        <textarea name="message" rows="5" placeholder="Nagano AI Works チームへメッセージを送信" required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">送信する</button>
+            </form>
+            <div id="js-form-status" class="form-status"></div>
         </div>
     </section>
 </main>
 
 <footer>
-    <p>&copy; 2026 Nagano AI Works | Miyazaki</p>
+    <div class="footer-inner">
+        <p>&copy; 2026 Nagano AI Works | SHINORAIL Project</p>
+        <p class="platform-note">Designed and developed by Nagano AI Works technical team.</p>
+    </div>
 </footer>
 
 <script src="script.js"></script>
