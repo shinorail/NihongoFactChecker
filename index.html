@@ -8,53 +8,55 @@
 </head>
 <body>
     <header>
-        <div class="logo">Nagano AI Works</div>
-        <button class="menu-btn" onclick="toggleNav()">Menu</button>
+        <a href="#" class="logo">Nagano AI Works</a>
+        <button class="menu-trigger" id="js-menu-trigger">
+            <span></span><span></span><span></span>
+        </button>
     </header>
 
-    <main class="container">
-        <section class="glass-card" style="text-align: center;">
-            <h1 style="background: linear-gradient(135deg, #fff 40%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Nihongo Fact Checker
-            </h1>
-            <p class="accent-text" style="font-size: 1.3rem; margin-bottom: 2rem;">日本語文章の事実チェックを、もっと簡単に。</p>
-            <p style="text-align: left; padding: 1rem; border-left: 2px solid var(--accent); background: rgba(0,0,0,0.15); border-radius: 0 15px 15px 0;">
-                Nihongo Fact Checker は、日本語の文章を AI が解析し、事実性をチェックするアプリです。
-                レポート、自由研究、SNS 投稿の推敲など、情報の正確さが求められる場面で活躍します。
+    <div class="menu-overlay">
+        <nav class="menu-nav">
+            <a href="#home" style="transition-delay: 0.1s;">Home</a>
+            <a href="#roadmap" style="transition-delay: 0.2s;">Roadmap</a>
+            <a href="#brand" style="transition-delay: 0.3s;">Brand</a>
+            <a href="legal.html" style="transition-delay: 0.4s;">Terms & AI</a>
+        </nav>
+    </div>
+
+    <main id="home">
+        <section>
+            <h1 class="reveal" style="font-size: 5rem;">Nihongo<br>Fact Checker</h1>
+            <p class="reveal" style="color: var(--gray-text); font-size: 1.5rem; margin-top: 20px;">
+                v3.5.0 Released. <br>Python不要。長野から届ける、最高精度の校正体験。
             </p>
+            <div class="reveal" style="margin-top: 40px;">
+                <a href="https://github.com/shinorail/NihongoFactChecker/releases" 
+                   style="color: var(--accent-color); font-weight: 900; text-decoration: none; font-size: 1.2rem;">
+                   Download EXE →
+                </a>
+            </div>
         </section>
 
-        <section class="glass-card">
-            <h2>特徴</h2>
-            <ul style="list-style: none; margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">🔍 高精度な事実確認</li>
-                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">⚡ 爆速ローカル処理</li>
-                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">🛡️ プライバシー重視設計</li>
-                <li style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid var(--glass-border);">🎨 直感的な UI デザイン</li>
-            </ul>
+        <section id="roadmap">
+            <h2 class="reveal">Roadmap</h2>
+            <div class="content-box reveal" style="margin-top: 30px;">
+                <p>2026.03 - v3.5.0: アルゴリズム大幅改善 & UI刷新</p>
+                <p>2026.Q2 - v4.0.0: AIリアルタイム推敲機能 搭載予定</p>
+            </div>
         </section>
 
-        <section class="glass-card" style="text-align: center; border: 2px solid var(--accent);">
-            <h2>ダウンロード</h2>
-            <p style="margin: 1rem 0; color: var(--text-sub);">Windows 版 (v1.0) を無料で配布中。</p>
-            
-            <button class="btn-main" onclick="openDownloadModal(event)">
-                Download .exe Free
-            </button>
-            
-            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">対応 OS: Windows 10 / 11 (64bit)</p>
-        </section>
-
-        <section class="glass-card" style="background: rgba(255,255,255,0.03);">
-            <h2>Nagano AI Works</h2>
-            <p style="margin-top: 1rem;">
-                長野県から発信する個人開発ブランド。「シンプルで強い AI ツール」をコンセプトに、
-                あなたの知的な活動をテクノロジーでサポートします。
+        <section id="brand">
+            <h2 class="reveal">Brand</h2>
+            <p class="reveal" style="margin-top: 20px;">
+                「Nagano AI Works」は、長野市を拠点とする宮嵜による個人プロジェクトです。<br>
+                技術を、もっと身近に。もっとシンプルに。
             </p>
-            <a href="company.html" style="color: var(--accent); text-decoration: none; display: inline-block; margin-top: 1.5rem; font-weight: bold;">ブランド詳細を見る →</a>
         </section>
     </main>
 
-    <script src="common.js"></script>
+    <footer class="footer-mini">
+        &copy; 2026 Nagano AI Works / Miyazaki.
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
