@@ -1,30 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const trigger = document.getElementById('js-menu-trigger');
-    const body = document.body;
+    // メニュー制御
+    const menuOpen = document.getElementById('js-menu-open');
+    const menuClose = document.getElementById('js-menu-close');
+    const fullMenu = document.getElementById('js-full-menu');
 
-    // Menu Toggle
-    trigger.addEventListener('click', () => {
-        body.classList.toggle('menu-open');
-    });
+    menuOpen.addEventListener('click', () => fullMenu.classList.add('active'));
+    menuClose.addEventListener('click', () => fullMenu.classList.remove('active'));
 
-    // Scroll Reveal Animation
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, { threshold: 0.1 });
+    // 設定モーダル制御
+    const settingsTrigger = document.getElementById('js-settings-trigger');
+    const settingsModal = document.getElementById('js-settings-modal');
+    const settingsClose = document.getElementById('js-settings-close');
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    settingsTrigger.addEventListener('click', () => settingsModal.classList.add('active'));
+    settingsClose.addEventListener('click', () => settingsModal.classList.remove('active'));
 
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            body.classList.remove('menu-open');
-            const target = document.querySelector(this.getAttribute('href'));
-            if(target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
+    // JSONアップデート情報の取得
+    const updateUrl = 'https://shinorail.github.io/NihongoFactChecker/update.json';
+    const logEl = document.getElementById('js-console-log');
+    const updateInfoEl = document.getElementById('js-update-info');
+
+    async function fetchUpdates() {
+        try {
+            const response = await fetch(updateUrl);
+            const data = await response.json();
+            
+            logEl.innerHTML += `[${new Date().toLocaleTimeString()}] Version ${data.version} detected.<br>`;
+            logEl.innerHTML += `[${new Date().toLocaleTimeString()}] Sync Complete. Status: LATEST.`;
+            
+            // アップデート情報の表示
+            updateInfoEl.innerHTML = `
+                <p><strong>Version:</strong> ${data.version}</p>
+                <p><strong>Update:</strong> ${data.date || '2026/03/20'}</p>
+                <p>${data.description || '機能改善およびバグ修正'}</p>
+            `;
+        } catch (error) {
+            logEl.innerHTML += `<span style="color:red;">[ERROR] Failed to fetch updates.</span>`;
+            updateInfoEl.innerHTML = "情報の取得に失敗しました。";
+        }
+    }
+
+    fetchUpdates();
 });
