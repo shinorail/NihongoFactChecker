@@ -1,44 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // メニュー制御
-    const menuOpen = document.getElementById('js-menu-open');
-    const menuClose = document.getElementById('js-menu-close');
-    const fullMenu = document.getElementById('js-full-menu');
+    
+    // 1. 位置情報の自動取得
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (pos) => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            document.getElementById('js-latlng').innerText = `${lat.toFixed(4)} / ${lon.toFixed(4)}`;
 
-    menuOpen.addEventListener('click', () => fullMenu.classList.add('active'));
-    menuClose.addEventListener('click', () => fullMenu.classList.remove('active'));
-
-    // 設定モーダル制御
-    const settingsTrigger = document.getElementById('js-settings-trigger');
-    const settingsModal = document.getElementById('js-settings-modal');
-    const settingsClose = document.getElementById('js-settings-close');
-
-    settingsTrigger.addEventListener('click', () => settingsModal.classList.add('active'));
-    settingsClose.addEventListener('click', () => settingsModal.classList.remove('active'));
-
-    // JSONアップデート情報の取得
-    const updateUrl = 'https://shinorail.github.io/NihongoFactChecker/update.json';
-    const logEl = document.getElementById('js-console-log');
-    const updateInfoEl = document.getElementById('js-update-info');
-
-    async function fetchUpdates() {
-        try {
-            const response = await fetch(updateUrl);
-            const data = await response.json();
-            
-            logEl.innerHTML += `[${new Date().toLocaleTimeString()}] Version ${data.version} detected.<br>`;
-            logEl.innerHTML += `[${new Date().toLocaleTimeString()}] Sync Complete. Status: LATEST.`;
-            
-            // アップデート情報の表示
-            updateInfoEl.innerHTML = `
-                <p><strong>Version:</strong> ${data.version}</p>
-                <p><strong>Update:</strong> ${data.date || '2026/03/20'}</p>
-                <p>${data.description || '機能改善およびバグ修正'}</p>
-            `;
-        } catch (error) {
-            logEl.innerHTML += `<span style="color:red;">[ERROR] Failed to fetch updates.</span>`;
-            updateInfoEl.innerHTML = "情報の取得に失敗しました。";
-        }
+            try {
+                // 逆ジオコーディング（緯度経度から住所を取得）
+                const res = await fetch(`https://geoapi.heartrails.com/api/json?method=getTowns&x=${lon}&y=${lat}`);
+                const data = await res.json();
+                const loc = data.response.location[0];
+                document.getElementById('js-location-name').innerText = `${loc.city}${loc.town}`;
+            } catch (e) {
+                document.getElementById('js-location-name').innerText = "住所取得エラー";
+            }
+        }, () => {
+            document.getElementById('js-location-name').innerText = "位置情報オフ";
+        });
     }
 
-    fetchUpdates();
+    // 2. 運行情報の更新（ここを将来的にAPIと連動可能）
+    // 現状は静的ですが、fetch等で順次拡張できます。
+
+    // 3. 今日は何の日（今日の日付に合わせて内容を変える処理をここに追加可能）
 });
