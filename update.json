@@ -1,5 +1,6 @@
 {
-  "latest_version": "1.0.1",
-  "download_url": "https://shinorail.github.io/NihongoFactChecker/dist/NihongoFactChecker.exe",
-  "message": "バグの修正とパフォーマンスの向上を行いました。"
+  "latest_version": "2.9.0",
+  "status": "ONLINE",
+  "news": "【重要】新年度アップデート配信開始！全国の運行情報取得エンジンを強化しました。",
+  "alert": "なし"
 }
